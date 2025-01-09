@@ -1,0 +1,19 @@
+name: my_vector_ci
+
+on:
+  push:
+    branches: [ "main","feat/cmake" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - run: make
+    - name: test 
+    - run: make test
+ 
