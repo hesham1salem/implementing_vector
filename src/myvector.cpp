@@ -49,6 +49,9 @@ int Vector::get(int index){
 int Vector::size(){
     return current_size;
 }
+int Vector::get_capacity(){
+    return capacity;
+}
 
 int Vector::get_front()
 {
@@ -102,8 +105,10 @@ void Vector::push_front(int value) {
     expand_capacity();
   }
   for(int i=current_size; i>0;i--){
-    
+    arr[i]=arr[i-1];
   }
+  arr[0]=value;
+  ++current_size;
 }
 
 int Vector::pop(int index)

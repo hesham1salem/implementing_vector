@@ -23,6 +23,7 @@ class Vector{
     void left_rotate() ;
 
     int size();
+    int get_capacity();
     ~Vector();
    private:
    int* arr;
