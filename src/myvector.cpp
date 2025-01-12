@@ -1,6 +1,14 @@
 #include "../include/myvector.hpp"
 #include<cstring>
-
+Vector::Vector():current_size{0},capacity(5){
+    arr= new int[capacity];
+}
+Vector::Vector(int n , int value):current_size(n),capacity(5){
+    arr =new int[capacity];
+    for(int i=0; i<n;i++){
+        arr[i]=value;
+    }
+}
 Vector::Vector(std::initializer_list<int> init_list)
         : current_size(init_list.size()), capacity(5) {
         arr = new int[capacity];
@@ -9,10 +17,7 @@ Vector::Vector(std::initializer_list<int> init_list)
             arr[index++] = value; 
         }
     }
-Vector::Vector(int* array , int size) : current_size(size), capacity(size) {
-    arr = new int[capacity]; 
-    std::memcpy(arr, array, size * sizeof(int)); 
-}
+
 Vector::~Vector(){
     if(arr){
         delete[] arr;

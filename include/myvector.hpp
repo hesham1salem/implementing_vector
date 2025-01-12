@@ -6,8 +6,9 @@
 # define NOT_EXIST -1;
 class Vector{
     public:
+    Vector();
+    Vector(int n ,int value);
     Vector(std::initializer_list<int> init_list);
-    Vector(int* array, int size) ;
     void expand_capacity();
     void set(int index, int value);
     int get(int index);
