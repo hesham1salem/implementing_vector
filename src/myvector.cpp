@@ -2,7 +2,7 @@
 #include<cstring>
 
 Vector::Vector(std::initializer_list<int> init_list)
-        : current_size(init_list.size()), capacity(init_list.size()) {
+        : current_size(init_list.size()), capacity(5) {
         arr = new int[capacity];
         int index = 0;
         for (int value : init_list) {
