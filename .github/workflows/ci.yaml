@@ -14,8 +14,8 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: install dependencies
-      run: sudo apt install libgtest-dev
-    - run: make
+      run: sudo apt install -y libgtest-dev  python3-colcon-common-extensions
+    - run: colcon build 
     - name: test 
-      run: make test
+      run: colcon test
  
