@@ -23,8 +23,13 @@ class Vector{
     void right_rotate();
     void left_rotate() ;
 
-    int size();
-    int get_capacity();
+    inline int size(){
+        return current_size;
+    }
+    inline int get_capacity(){
+        return capacity;
+    }
+
     ~Vector();
    private:
    int* arr;

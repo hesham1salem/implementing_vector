@@ -57,15 +57,15 @@ TEST_F(myvector_test,set)
 }
 TEST_F(myvector_test,pop)
 {
-    Vector v{1,2,3,4};
-    EXPECT_EQ(4,v.pop(v.size()-1));
-    v.print();
+    v.pop(v.size()-1);
+    EXPECT_EQ(4,v.size());
+
 }
 
 TEST_F(myvector_test,find_index)
 {
     EXPECT_EQ(3,v.find_index(4));
-    v.print();
+  
 }
 TEST_F(myvector_test,right_rotate)
 {       
@@ -80,9 +80,4 @@ TEST_F(myvector_test,left_rotate)
   
     EXPECT_EQ(2,v.get_front());
    
-}
-int main()
-{
-    testing::InitGoogleTest();
-    return RUN_ALL_TESTS();
 }

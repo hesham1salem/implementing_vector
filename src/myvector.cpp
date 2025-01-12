@@ -1,4 +1,4 @@
-#include "../include/myvector.hpp"
+#include "myvector.hpp"
 #include<cstring>
 Vector::Vector():current_size{0},capacity(5){
     arr= new int[capacity];
@@ -13,8 +13,9 @@ Vector::Vector(std::initializer_list<int> init_list)
         : current_size(init_list.size()), capacity(5) {
         arr = new int[capacity];
         int index = 0;
-        for (int value : init_list) {
-            arr[index++] = value; 
+        for (auto it=init_list.begin();it!=init_list.end();it++) {
+            index++;
+            arr[index] = *it; 
         }
     }
 
@@ -34,48 +35,41 @@ void Vector::expand_capacity(){
    capacity=new_cap;
 }
 void Vector::set(int index, int value){
-      if(index <current_size && index >= 0){
-        arr[index]=value;  
+    
+    if(index >= current_size ||index < 0){
+        throw std::out_of_range("index is out of range");
+ 
      }
-     else{
-      throw std::out_of_range("index is out of range");
-        }
+
+      arr[index]=value;  
+
+          
 
 }
 int Vector::get(int index){
-    if(index <current_size && index >= 0){
-            return arr[index];
+    if(index >current_size && index < 0){
+        throw std::out_of_range(" index is out of range");
+ 
      }
-
-    else throw std::out_of_range("index is out of range");
+     return arr[index];
     
 }
 
-int Vector::size(){
-    return current_size;
-}
-int Vector::get_capacity(){
-    return capacity;
-}
 
 int Vector::get_front()
 {
-    if(current_size>0){
-        return arr[0];
-    }
-    else{
+    if(current_size <=0){
         throw std::out_of_range("vector is empty");
     }
+    return arr[0];
 }
 
 int Vector::get_back()
 {   
-     if(current_size>0){
-        return arr[current_size -1];
-    }
-    else{
+    if(current_size <= 0){
         throw std::out_of_range("vector is empty");
     }
+    return arr[current_size -1];
 }
 
 int Vector::find_index(int value){
@@ -118,7 +112,7 @@ void Vector::push_front(int value) {
 
 int Vector::pop(int index)
    {
-        if (index < 0 || index >= current_size) {
+        if (index < 0 && index >= current_size) {
             throw std::out_of_range("Index out of range");
         }
         int value = arr[index];
@@ -147,21 +141,21 @@ void Vector::insert(int index, int value) {
 }
 
 void Vector::right_rotate() {
-    if (current_size > 1) {
+    
         int last = arr[current_size - 1];
         for (int i = current_size - 1; i > 0; --i) {
             arr[i] = arr[i - 1];
         }
         arr[0] = last;
-    }
+    
 }
 
 void Vector::left_rotate() {
-    if (current_size > 1) {
+    
         int first = arr[0];
         for (int i = 0; i < current_size - 1; ++i) {
             arr[i] = arr[i + 1];
         }
         arr[current_size - 1] = first;
-    }
+    
 }

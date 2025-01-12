@@ -1,6 +1,7 @@
 
 project(myvector)
 add_executable(main_program src/main.cpp src/myvector.cpp)
+target_include_directories(main_program PUBLIC include/)
 install(TARGETS main_program )
 
 include(CTest)
