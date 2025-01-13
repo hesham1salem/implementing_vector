@@ -3,14 +3,10 @@
 int main()
 {  
   
-  Vector v;
-  std::cout<<v.size()<<std::endl;
-  v.print();
-  v.push_back(10);
-  v.print();
-  v.left_rotate();
-  v.print();
-  std::cout<<v.size()<<std::endl;
-
+  Vector v1{1,2,3,4};
+  Vector v2(std::move(v1));
+  v1.push_back(4);
+  v1.print();
+  v2.print();
   return 0;
 }

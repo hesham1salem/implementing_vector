@@ -14,14 +14,66 @@ Vector::Vector(std::initializer_list<int> init_list)
         arr = new int[capacity];
         int index = 0;
         for (auto it=init_list.begin();it!=init_list.end();it++) {
-            index++;
-            arr[index] = *it; 
+           
+            arr[index] = *it;
+            index++; 
         }
     }
+
+Vector::Vector(const Vector & obj){
+    this->current_size=obj.current_size;
+    this->capacity=obj.capacity;
+    this->arr = new int[this->capacity];
+    for(int i=0; i<obj.current_size;i++){
+        this->arr[i]=obj.arr[i];
+    }
+}
+Vector::Vector(Vector &&obj){
+    
+    this->current_size=obj.current_size;
+    this->capacity=obj.capacity;
+    obj.current_size=0;
+    obj.capacity=0;
+    this->arr=obj.arr;
+    obj.arr=nullptr;
+
+}
+Vector& Vector::operator=(const Vector & obj){
+    // if  obj is not the same as this 
+    if(&obj!=this){
+        this->current_size=obj.current_size;
+        this->capacity=obj.capacity;
+        // check if  arr is not nullptr
+        if(this->arr){
+            delete[] arr;
+        }
+        this->arr= new int[this->capacity];
+        for(int i=0; i<obj.current_size;i++){
+            this->arr[i]=obj.arr[i];
+        }
+
+    }
+    return *this;
+}
+Vector & Vector::operator=(Vector && obj){
+    if(this != &obj){
+      this->capacity=obj.capacity;
+      this->current_size=obj.current_size;
+      if(this->arr){
+        delete[] arr;
+      }
+      this->arr=obj.arr;
+      obj.current_size=0;
+      obj.capacity=0;
+      obj.arr=nullptr;  
+    }
+    return *this;
+}
 
 Vector::~Vector(){
     if(arr){
         delete[] arr;
+        arr=nullptr;
     }
 }
 void Vector::expand_capacity(){

@@ -9,6 +9,10 @@ class Vector{
     Vector();
     Vector(int n ,int value);
     Vector(std::initializer_list<int> init_list);
+    Vector(const Vector & obj); 
+    Vector(Vector &&obj); 
+    Vector& operator=(const Vector & obj);
+    Vector& operator=(Vector && obj);
     void expand_capacity();
     void set(int index, int value);
     int get(int index);
