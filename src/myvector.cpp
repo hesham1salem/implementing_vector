@@ -20,54 +20,57 @@ Vector::Vector(std::initializer_list<int> init_list)
         }
     }
 
-Vector::Vector(const Vector & obj){
-    this->current_size=obj.current_size;
-    this->capacity=obj.capacity;
+Vector::Vector(const Vector & other){
+    this->current_size=other.current_size;
+    this->capacity=other.capacity;
     this->arr = new int[this->capacity];
-    for(int i=0; i<obj.current_size;i++){
-        this->arr[i]=obj.arr[i];
+    for(int i=0; i<other.current_size;i++){
+        this->arr[i]=other.arr[i];
     }
 }
-Vector::Vector(Vector &&obj){
+Vector::Vector(Vector &&other){
     
-    this->current_size=obj.current_size;
-    this->capacity=obj.capacity;
-    obj.current_size=0;
-    obj.capacity=0;
-    this->arr=obj.arr;
-    obj.arr=nullptr;
+    this->current_size=other.current_size;
+    this->capacity=other.capacity;
+    other.current_size=0;
+    other.capacity=0;
+    this->arr=other.arr;
+    other.arr=nullptr;
 
 }
-Vector& Vector::operator=(const Vector & obj){
-    // if  obj is not the same as this 
-    if(&obj!=this){
-        this->current_size=obj.current_size;
-        this->capacity=obj.capacity;
+Vector& Vector::operator=(const Vector & other){
+    // if  other is not the same as this 
+    if(&other == this){
+        return *this;
+    }
+        this->current_size=other.current_size;
+        this->capacity=other.capacity;
         // check if  arr is not nullptr
         if(this->arr){
             delete[] arr;
         }
         this->arr= new int[this->capacity];
-        for(int i=0; i<obj.current_size;i++){
-            this->arr[i]=obj.arr[i];
+        for(int i=0; i<other.current_size;i++){
+            this->arr[i]=other.arr[i];
         }
 
-    }
-    return *this;
+    
+    
 }
-Vector & Vector::operator=(Vector && obj){
-    if(this != &obj){
-      this->capacity=obj.capacity;
-      this->current_size=obj.current_size;
+Vector & Vector::operator=(Vector && other){
+      if(this == &other){
+         return *this;
+      }
+      this->capacity=other.capacity;
+      this->current_size=other.current_size;
       if(this->arr){
         delete[] arr;
       }
-      this->arr=obj.arr;
-      obj.current_size=0;
-      obj.capacity=0;
-      obj.arr=nullptr;  
-    }
-    return *this;
+      this->arr=other.arr;
+      other.current_size=0;
+      other.capacity=0;
+      other.arr=nullptr;  
+
 }
 
 Vector::~Vector(){

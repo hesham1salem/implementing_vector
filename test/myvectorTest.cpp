@@ -85,24 +85,24 @@ TEST_F(myvector_test,left_rotate)
 TEST_F(myvector_test,copy_constructor)
 {
     Vector v1(v);
-    EXPECT_EQ(v.size(),v1.size());
-    EXPECT_EQ(v.get_capacity(),v1.get_capacity());
+    ASSERT_EQ(v.size(),v1.size());
+    ASSERT_EQ(v.get_capacity(),v1.get_capacity());
 }
 
 TEST_F(myvector_test,copy_assignment)
 {
     Vector v1;
     v1=v;
-    EXPECT_EQ(v.size(),v1.size());
-    EXPECT_EQ(v.get_capacity(),v1.get_capacity());
+    ASSERT_EQ(v.size(),v1.size());
+    ASSERT_EQ(v.get_capacity(),v1.get_capacity());
 }
 
 TEST_F(myvector_test,move_constructor)
 {   
     size_t prev_size =v.size();
     Vector v1=std::move(v);
-    EXPECT_EQ(prev_size,v1.size());
-    EXPECT_EQ(0,v.size());
+    ASSERT_EQ(prev_size,v1.size());
+    ASSERT_EQ(0,v.size());
 }
 
 TEST_F(myvector_test,move_assignment)
@@ -110,7 +110,7 @@ TEST_F(myvector_test,move_assignment)
     size_t prev_size =v.size();
     Vector v1;
     v1=std::move(v);
-    EXPECT_EQ(prev_size,v1.size());
-    EXPECT_EQ(0,v.size());
+    ASSERT_EQ(prev_size,v1.size());
+    ASSERT_EQ(0,v.size());
 
 }
