@@ -52,10 +52,8 @@ Vector& Vector::operator=(const Vector & other){
         this->arr= new int[this->capacity];
         for(int i=0; i<other.current_size;i++){
             this->arr[i]=other.arr[i];
-        }
-
-    
-    
+        } 
+        return *this;
 }
 Vector & Vector::operator=(Vector && other){
       if(this == &other){
@@ -70,6 +68,7 @@ Vector & Vector::operator=(Vector && other){
       other.current_size=0;
       other.capacity=0;
       other.arr=nullptr;  
+      return *this;
 
 }
 
