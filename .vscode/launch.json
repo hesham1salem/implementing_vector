@@ -4,7 +4,7 @@
             "name": "myvector test",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/a.out",
+            "program": "${workspaceFolder}/install/myvector/bin/main_program",
             "args": [],
             "cwd": "${fileDirname}",
             "environment": [],

@@ -1,0 +1,23 @@
+name: my_vector_ci
+
+on:
+  push:
+    branches: [ "main","feat/cmake" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: install dependencies
+      run: |
+       curl -s https://packagecloud.io/install/repositories/dirk-thomas/colcon/script.deb.sh | sudo bash
+       sudo apt install -y libgtest-dev  python3-colcon-common-extensions
+    - run: colcon build 
+    - name: test 
+      run: colcon test
+ 
