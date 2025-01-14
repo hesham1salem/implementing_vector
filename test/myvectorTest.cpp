@@ -102,7 +102,7 @@ TEST_F(myvector_test,move_constructor)
     size_t prev_size =v.size();
     Vector v1=std::move(v);
     ASSERT_EQ(prev_size,v1.size());
-    ASSERT_EQ(0,v.size());
+    
 }
 
 TEST_F(myvector_test,move_assignment)
@@ -111,6 +111,14 @@ TEST_F(myvector_test,move_assignment)
     Vector v1;
     v1=std::move(v);
     ASSERT_EQ(prev_size,v1.size());
-    ASSERT_EQ(0,v.size());
+
+    
 
 }
+TEST_F(myvector_test,moving_expection)
+{
+    Vector v1;
+    v1=std::move(v);
+    EXPECT_THROW(v.push_back(20),std::runtime_error);
+}
+
