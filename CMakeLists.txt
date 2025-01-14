@@ -1,4 +1,5 @@
 
+cmake_minimum_required(VERSION 3.30)
 project(myvector)
 add_executable(main_program src/main.cpp src/myvector.cpp)
 target_include_directories(main_program PUBLIC include/)

@@ -1,5 +1,6 @@
 #include <iostream>
 #include<stdexcept>
+#include <memory>
 #ifndef VECTOR_H
 #define VECCTOR_H
 
@@ -9,10 +10,10 @@ class Vector{
     Vector();
     Vector(int n ,int value);
     Vector(std::initializer_list<int> init_list);
-    Vector(const Vector & other); 
-    Vector(Vector &&other); 
-    Vector& operator=(const Vector & other);
-    Vector& operator=(Vector && other);
+    // Vector(const Vector & other); 
+    // Vector(Vector &&other); 
+    // Vector& operator=(const Vector & other);
+    // Vector& operator=(Vector && other);
     void expand_capacity();
     void set(int index, int value);
     int get(int index);
@@ -28,17 +29,19 @@ class Vector{
     void left_rotate() ;
 
     inline int size(){
-        return current_size;
+        return *current_size;
     }
     inline int get_capacity(){
-        return capacity;
+        return *capacity;
     }
 
-    ~Vector();
+
    private:
-   int* arr;
-   int capacity;
-   int current_size;
+   
+   std::shared_ptr<int> capacity;
+   std::shared_ptr<int> current_size;
+   std::shared_ptr<int[]> arr;
+  
 };
 #endif
 
